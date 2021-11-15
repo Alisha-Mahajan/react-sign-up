@@ -3,3 +3,4 @@ export const EmailRegex = RegExp(
 );
 
 export const TIMEOUT = 1000;
+export const INITIAL_VALUE = 0;
