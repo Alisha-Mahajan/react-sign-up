@@ -2,9 +2,10 @@ import { Component } from "react";
 import { Button, TextField } from "@material-ui/core";
 import Stack from "@mui/material/Stack";
 import RegisterIcon from "@material-ui/icons/AccountCircle";
-import styles from "./SignUpForm.module.scss";
+import styles from "../../sass/SignUpForm.module.scss";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { EmailRegex } from "../../immutables/constants";
 
 type IState = {
   name: string;
@@ -18,10 +19,6 @@ type IState = {
     confirmPwd: string;
   };
 };
-
-const Regex = RegExp(
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
 
 toast.configure();
 class SignUpForm extends Component<{}, IState> {
@@ -54,7 +51,7 @@ class SignUpForm extends Component<{}, IState> {
           value.length < 5 ? "Name should contains at least 5 characters" : "";
         break;
       case "email":
-        errors.email = !Regex.test(value) ? "Email is not valid" : "";
+        errors.email = !EmailRegex.test(value) ? "Email is not valid" : "";
         break;
       case "password":
         errors.password =
